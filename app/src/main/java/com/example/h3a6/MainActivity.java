@@ -33,23 +33,7 @@ public class MainActivity extends AppCompatActivity {
         swapFragment(fragment);
         Intent intent1 = getIntent();
         String id = intent1.getStringExtra("id");
-        if(id != null) {
-            RequestQueue requestQueue = Volley.newRequestQueue(getApplicationContext());
-            String url = "https://api.thecatapi.com/v1/images/search?breed_id=" + id;
-            Response.Listener<String> responseListener = new Response.Listener<String>() {
-                @Override
-                public void onResponse(String response) {
-                    Gson gson = new Gson();
-                    CatImage[] catDetailArray = gson.fromJson(response, CatImage[].class);
-                    ArrayList<CatImage> catDetailArrayList = new ArrayList<CatImage>(Arrays.asList(catDetailArray));
-                    CatImage catDetailObject = catDetailArrayList.get(0);
-                    Cats[] catArrayObject = catDetailObject.getBreeds();
-                    ArrayList<Cats> catArrayListObject = new ArrayList<Cats>(Arrays.asList(catArrayObject));
-                    Cats catObject = catArrayListObject.get(0);
-                    favouritesCatArrayList.add(catObject);
-                }
-            };
-        }
+
         bottomNavigationView = findViewById(R.id.bottomNavigationView);
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
