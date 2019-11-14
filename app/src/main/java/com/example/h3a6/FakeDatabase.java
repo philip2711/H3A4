@@ -7,7 +7,7 @@ public class FakeDatabase {
 
     public static HashMap<String, Cats> catsarray = new HashMap<>();
 
-    public static Cats getCatsById(long id) {
+    public static Cats getCatsById(String id) {
         return catsarray.get(id);
     }
 

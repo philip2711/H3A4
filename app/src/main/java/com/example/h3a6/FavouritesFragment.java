@@ -4,10 +4,17 @@ package com.example.h3a6;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.FrameLayout;
+
+import com.android.volley.RequestQueue;
+
+import java.util.ArrayList;
 
 
 /**
@@ -16,16 +23,35 @@ import android.view.ViewGroup;
 public class FavouritesFragment extends Fragment {
 
 
+    private RequestQueue requestQueue;
+    private ArrayList<Cats> catArrayList = new ArrayList<Cats>();
+
     public FavouritesFragment() {
         // Required empty public constructor
     }
-
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_favourites, container, false);
-    }
+        FrameLayout frameLayout = (FrameLayout) inflater.inflate(R.layout.fragment_favourites, container, false);
 
+        //initiating recyclerView
+        final RecyclerView recyclerView;
+        RecyclerView.LayoutManager layoutManager;
+        recyclerView = frameLayout.findViewById(R.id.f_rv);
+        layoutManager = new LinearLayoutManager(this.getContext());
+        recyclerView.setLayoutManager(layoutManager);
+
+        //retrieving the favouriteCatArrayList
+        catArrayList = MainActivity.favouritesCatArrayList;
+
+        //populating the recyclerView with the list of favourited cats
+        FavouritesAdapter favouritesAdapter = new FavouritesAdapter();
+        favouritesAdapter.setData(catArrayList);
+        recyclerView.setAdapter(favouritesAdapter);
+
+        //returining the frameLayout
+        return frameLayout;
+    }
 }

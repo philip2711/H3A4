@@ -1,10 +1,8 @@
 package com.example.h3a6;
 
 public class CatImage {
-    //breeds = cat information
     private Cats[] breeds;
     private String id;
-    //url = image
     private String url;
 
     public Cats[] getBreeds() {
