@@ -22,36 +22,25 @@ import java.util.ArrayList;
  */
 public class FavouritesFragment extends Fragment {
 
-
-    private RequestQueue requestQueue;
-    private ArrayList<Cats> catArrayList = new ArrayList<Cats>();
-
+    private RecyclerView favouritesRecyclerView;
+    public static ArrayList<Cats> catFavourites = new ArrayList<Cats>();
     public FavouritesFragment() {
-        // Required empty public constructor
+
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        FrameLayout frameLayout = (FrameLayout) inflater.inflate(R.layout.fragment_favourites, container, false);
 
-        //initiating recyclerView
-        final RecyclerView recyclerView;
-        RecyclerView.LayoutManager layoutManager;
-        recyclerView = frameLayout.findViewById(R.id.f_rv);
-        layoutManager = new LinearLayoutManager(this.getContext());
-        recyclerView.setLayoutManager(layoutManager);
+        final FavouritesAdapter favouritesAdapter = new FavouritesAdapter();
 
-        //retrieving the favouriteCatArrayList
-        catArrayList = MainActivity.favouritesCatArrayList;
-
-        //populating the recyclerView with the list of favourited cats
-        FavouritesAdapter favouritesAdapter = new FavouritesAdapter();
-        favouritesAdapter.setData(catArrayList);
-        recyclerView.setAdapter(favouritesAdapter);
-
-        //returining the frameLayout
-        return frameLayout;
+        View view = inflater.inflate(R.layout.fragment_favourites, container, false);
+        favouritesRecyclerView = view.findViewById(R.id.f_rv);
+        LinearLayoutManager layoutManager = new LinearLayoutManager(view.getContext());
+        favouritesRecyclerView.setLayoutManager(layoutManager);
+        favouritesAdapter.setData(catFavourites);
+        favouritesRecyclerView.setAdapter(favouritesAdapter);
+        return view;
     }
+
 }

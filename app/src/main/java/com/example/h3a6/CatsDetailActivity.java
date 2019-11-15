@@ -7,6 +7,7 @@ import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
@@ -25,44 +26,39 @@ import java.util.Arrays;
 import java.util.List;
 
 public class CatsDetailActivity extends AppCompatActivity {
-    private RequestQueue requestQueue;
-    private String imageUrl;
-    private String id;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail);
         Intent intent1 = getIntent();
-        id = intent1.getStringExtra("id");
+        String id = intent1.getStringExtra("id");
 
         final Cats cat = FakeDatabase.getCatsById(id);
 
-        TextView nameTextView = findViewById(R.id.catname);
-        nameTextView.setText(cat.getName());
+        TextView catName = findViewById(R.id.catname);
+        catName.setText(cat.getName());
 
-        TextView descTextView = findViewById(R.id.descriptiont);
-        descTextView.setText(cat.getDescription());
+        TextView descriptionn = findViewById(R.id.descriptiont);
+        descriptionn.setText(cat.getDescription());
 
-        TextView weightTextView = findViewById(R.id.weightt);
-        weightTextView.setText(cat.getWeight().getMetric() + "kg");
+        TextView weighted = findViewById(R.id.weightt);
+        weighted.setText(cat.getWeight().getMetric() + "kg");
 
-        TextView  tempTextView = findViewById(R.id.temperamentt);
-        tempTextView.setText(cat.getTemperament());
+        TextView  temper = findViewById(R.id.temperamentt);
+        temper.setText(cat.getTemperament());
 
-        TextView  originTextView = findViewById(R.id.origint);
-        originTextView.setText(cat.getOrigin());
+        TextView  originn = findViewById(R.id.origint);
+        originn.setText(cat.getOrigin());
 
-        TextView lifeTextView = findViewById(R.id.lifespant);
-        lifeTextView.setText(cat.getLife_span() + " years");
+        TextView lifet = findViewById(R.id.lifespant);
+        lifet.setText(cat.getLife_span() + " years");
 
-        TextView linkTextView = findViewById(R.id.wikit);
-        linkTextView.setText(cat.getWikipedia_url());
+        TextView wikil = findViewById(R.id.wikit);
+        wikil.setText(cat.getWikipedia_url());
 
-        TextView dogTextView = findViewById(R.id.friendt);
-        String dogText = String.valueOf(cat.getDog_friendly());
-        dogTextView.setText(dogText);
+        TextView dogt = findViewById(R.id.friendt);
+        dogt.setText(String.valueOf(cat.getDog_friendly()) + "/5");
 
         final ImageView catImage = findViewById(R.id.catimage);
 
@@ -72,13 +68,12 @@ favouritesButton.setOnClickListener(new View.OnClickListener(){
 @Override
 public void onClick (View view){
     Intent intent1 = new Intent(getApplicationContext(), MainActivity.class);
-    intent1.putExtra("id", id);
+    FavouritesFragment.catFavourites.add(cat);
     startActivity(intent1);
 }
 });
-        String potentialUrl = "https://api.thecatapi.com/v1/images/search?breed_ids=" + cat.getId();
 
-        //Create the context:
+        String potentialUrl = "https://api.thecatapi.com/v1/images/search?breed_ids=" + id ;
         RequestQueue requestQueue = Volley.newRequestQueue(this);
         Response.Listener<String> responseListener = new Response.Listener<String>() {
             @Override
@@ -87,7 +82,7 @@ public void onClick (View view){
                 CatImage[] imageArray = gson.fromJson(response, CatImage[].class);
                 ArrayList<CatImage> imageList = new ArrayList<>(Arrays.asList(imageArray));
                 CatImage thisImage = imageList.get(0);
-                imageUrl = thisImage.getUrl();
+                String imageUrl = thisImage.getUrl();
                 Glide.with(CatsDetailActivity.this).load(imageUrl).into(catImage);
 
             }

@@ -31,8 +31,6 @@ public class MainActivity extends AppCompatActivity {
 
         Fragment fragment = new CatsRecyclerFragment();
         swapFragment(fragment);
-        Intent intent1 = getIntent();
-        String id = intent1.getStringExtra("id");
 
         bottomNavigationView = findViewById(R.id.bottomNavigationView);
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {

@@ -11,25 +11,6 @@ public class Cats {
     private String wikipedia_url;
     private int dog_friendly;
 
-    public Cats(String id, String name){
-        this.id = id;
-        this.name = name;
-    }
-
-    public Cats(String id, String name, String description, CatWeight weight,
-               String temperament, String origin, String life_span, String wikipedia_url,
-               int dog_friendly){
-        this.id = id;
-        this.name = name;
-        this.description = description;
-        this.weight = weight;
-        this.temperament = temperament;
-        this.origin = origin;
-        this.life_span = life_span;
-        this.wikipedia_url = wikipedia_url;
-        this.dog_friendly = dog_friendly;
-    }
-
     public String getId() {
         return id;
     }

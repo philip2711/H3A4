@@ -62,7 +62,7 @@ public class CatsRecyclerFragment
                 if(s.length() == 0){
                     final CatsAdapter catsadapter = new CatsAdapter();
                     final RequestQueue requestQueue =  Volley.newRequestQueue(getActivity());
-                    String url = "https://api.thecatapi.com/v1/breeds/?api-key=7cfcc96f-f895-4c71-b88b-7ba3a5f9f625";
+                    String url = "https://api.thecatapi.com/v1/breeds/?api-key=c6f52a25-b4c8-4c1c-9d32-366ec70048e6";
 
                     Response.Listener<String> responseListener = new Response.Listener<String>() {
                         public void onResponse(String response) {
@@ -90,7 +90,7 @@ public class CatsRecyclerFragment
                     requestQueue.add(stringRequest);
 
                 } else {
-                    String url = "https://api.thecatapi.com/v1/breeds/search?api-key=7cfcc96f-f895-4c71-b88b-7ba3a5f9f625&q=" + s;
+                    String url = "https://api.thecatapi.com/v1/breeds/search?api-key=c6f52a25-b4c8-4c1c-9d32-366ec70048e6&q=" + s;
                     final RequestQueue requestQueue = Volley.newRequestQueue(getActivity());
                     Response.Listener<String> responseListener = new Response.Listener<String>() {
 
@@ -129,7 +129,7 @@ public class CatsRecyclerFragment
 
         final CatsAdapter catsadapter = new CatsAdapter();
         final RequestQueue requestQueue =  Volley.newRequestQueue(getActivity());
-        String url = "https://api.thecatapi.com/v1/breeds/?api-key=7cfcc96f-f895-4c71-b88b-7ba3a5f9f625";
+        String url = "https://api.thecatapi.com/v1/breeds/?api-key=c6f52a25-b4c8-4c1c-9d32-366ec70048e6";
 
         Response.Listener<String> responseListener = new Response.Listener<String>() {
             public void onResponse(String response) {
